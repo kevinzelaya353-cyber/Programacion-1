@@ -34,14 +34,15 @@ public class ProyectoProgra1VersionFinalGrupo2 {
         do {
             System.out.println("\n---------------------------------------------");
             System.out.println("1. Agregar nuevo colaborador");
-            System.out.println("2. Ver todos los colaboradores");
-            System.out.println("3. Agregar dias trabajados");
-            System.out.println("4. Agregar horas extra y valor por hora");
-            System.out.println("5. Ver resumen sin deducciones");
-            System.out.println("6. Ver total mensual (salario + horas extra)");
-            System.out.println("7. Ver reporte con deducciones");
-            System.out.println("8. Eliminar colaborador");
-            System.out.println("9. Salir");
+            System.out.println("2. Agregar deducciones a colaborador");
+            System.out.println("3. Ver todos los colaboradores");
+            System.out.println("4. Agregar dias trabajados");
+            System.out.println("5. Agregar horas extra y valor por hora");
+            System.out.println("6. Ver resumen sin deducciones");
+            System.out.println("7. Ver total mensual (salario + horas extra)");
+            System.out.println("8. Ver reporte con deducciones");
+            System.out.println("9. Eliminar colaborador");
+            System.out.println("10. Salir");
             System.out.println("---------------------------------------------\n");
             System.out.print("Seleccione una opcion: ");
             opcion = sc.nextInt();
@@ -72,14 +73,91 @@ public class ProyectoProgra1VersionFinalGrupo2 {
                     break;
 
                 case 2:
-                    System.out.println("\nLista de colaboradores:");
-                    for (int i = 0; i < empleados.size(); i++) {
-                        Empleado e = empleados.get(i);
-                        System.out.println(e.getNombre() + " | " + e.getApellido() + " | Lps." + e.getSalario() + " | ID: 00" + e.getId());
+
+                    int opcionPrestamoCasa = 0;
+                    int opcionPrestamoPlanilla = 0;
+                    int opcionRAP = 0;
+                    int opcionISR = 0;
+                    int opcionManutencion = 0;
+
+                    System.out.println("Ingrese el ID del colaborador:");
+                    int idDeduccion = sc.nextInt();
+                    Empleado empDeduccion = null;
+
+                    for (Empleado e : empleados) {
+                        if (e.getId() == idDeduccion) {
+                            empDeduccion = e;
+                            break;
+                        }
+                    }
+
+                    if (empDeduccion != null) {
+                        System.out.println("Asignando deducciones a: " + empDeduccion.getNombre() + " " + empDeduccion.getApellido());
+
+                        System.out.println("Aplica a prestamo de planilla? (1 = si / 2 = no):");
+                        opcionPrestamoPlanilla = sc.nextInt();
+
+                        if (opcionPrestamoPlanilla == 1) {
+                            empDeduccion.setPrestamoPlanilla("Aplica");
+                        } else {
+                            empDeduccion.setPrestamoPlanilla("No aplica");
+                        }
+
+                        System.out.println("Aplica a prestamo de casa? (1 = si / 2 = no):");
+                        opcionPrestamoCasa = sc.nextInt();
+
+                        if (opcionPrestamoCasa == 1) {
+                            empDeduccion.setPrestamoCasa("Aplica");
+                        } else {
+                            empDeduccion.setPrestamoCasa("No aplica");
+                        }
+
+                        System.out.println("Aplica a RAP? (1 = si / 2 = no):");
+                        opcionRAP = sc.nextInt();
+
+                        if (opcionRAP == 1) {
+                            empDeduccion.setRAP("Aplica");
+                        } else {
+                            empDeduccion.setRAP("No aplica");
+                        }
+
+                        System.out.println("Aplica a ISR? (1 = si / 2 = no):");
+                        opcionISR = sc.nextInt();
+
+                        if (opcionISR == 1) {
+                            empDeduccion.setISR("Aplica");
+                        } else {
+                            empDeduccion.setISR("No aplica");
+                        }
+
+                        System.out.println("Aplica a manutencion? (1 = si / 2 = no):");
+                        opcionManutencion = sc.nextInt();
+
+                        if (opcionManutencion == 1) {
+                            empDeduccion.setManutencion("Aplica");
+                        } else {
+                            empDeduccion.setManutencion("No aplica");
+                        }
+
+                        System.out.println("Deducciones asignadas correctamente.");
+                    } else {
+                        System.out.println("Colaborador no encontrado.");
                     }
                     break;
 
                 case 3:
+                    System.out.println("\nLista de colaboradores:");
+                    for (int i = 0; i < empleados.size(); i++) {
+                        Empleado e = empleados.get(i);
+                        System.out.println(e.getNombre()
+                                + " | "
+                                + e.getApellido()
+                                + " | Lps." + e.getSalario()
+                                + " | ID: 00" + e.getId());
+                    }
+                    break;
+
+                case 4:
 
                     int idBuscado = 0;
 
@@ -109,7 +187,7 @@ public class ProyectoProgra1VersionFinalGrupo2 {
                     }
                     break;
 
-                case 4:
+                case 5:
 
                     int idExtra = 0;
 
@@ -139,7 +217,7 @@ public class ProyectoProgra1VersionFinalGrupo2 {
                     }
                     break;
 
-                case 5:
+                case 6:
                     System.out.println("\nTOTAL mensual incluyendo horas extra:");
                     for (int i = 0; i < empleados.size(); i++) {
                         Empleado e = empleados.get(i);
@@ -157,7 +235,7 @@ public class ProyectoProgra1VersionFinalGrupo2 {
                     }
                     break;
 
-                case 6:
+                case 7:
                     System.out.println("\nResumen sin deducciones:");
                     for (int i = 0; i < empleados.size(); i++) {
                         Empleado e = empleados.get(i);
@@ -174,25 +252,92 @@ public class ProyectoProgra1VersionFinalGrupo2 {
                     }
                     break;
 
-                case 7:
-                    System.out.println("\nReporte mensual con deducciones (10%):");
-                    for (int i = 0; i < empleados.size(); i++) {
-                        Empleado e = empleados.get(i);
-                        double pagoExtra = e.getHorastrab() * e.getPagohora();
-                        double base = e.getSalario() * e.getDiasTrabajados();
-                        double total = base + pagoExtra;
-                        double descuento = total * 0.10;
-                        double finalTotal = total - descuento;
+                case 8:
+
+                    System.out.println("\nReporte mensual con deducciones :");
+
+                    for (Empleado e : empleados) {
+                       
+                        double pagoExtra;
+                        double base;
+                        double total;
+                        double descuento;
+                        double deduccionesExtras;
+                        double rap = 0;
+                        double isr = 0;
+                        double totalDeducciones;
+                        double finalTotal;
+
+                       
+                        pagoExtra = e.getHorastrab() * e.getPagohora();
+                        base = e.getSalario() * e.getDiasTrabajados();
+                        total = base + pagoExtra;
+                        descuento = total; 
+                        deduccionesExtras = 0;
+
+                        
                         System.out.println("Colaborador: " + e.getNombre() + " " + e.getApellido());
+
+                     
+                        if (e.getPrestamoPlanilla().equals("Aplica")) {
+                            System.out.println("Prestamo planilla: -Lps. 500");
+                            deduccionesExtras += 500;
+                        } else {
+                            System.out.println("Prestamo planilla: No aplica");
+                        }
+
+                        // Prestamo casa
+                        if (e.getPrestamoCasa().equals("Aplica")) {
+                            System.out.println("Prestamo casa: -Lps. 1000");
+                            deduccionesExtras += 1000;
+                        } else {
+                            System.out.println("Prestamo casa: No aplica");
+                        }
+
+                      
+                        if (e.getRAP().equals("Aplica")) {
+                            rap = total * 0.015;
+                            System.out.println("RAP (1.5%): -Lps. " + rap);
+                            deduccionesExtras += rap;
+                        } else {
+                            System.out.println("RAP: No aplica");
+                        }
+
+                        
+                        if (e.getISR().equals("Aplica")) {
+                            isr = total * 0.05;
+                            System.out.println("ISR (5%): -Lps. " + isr);
+                            deduccionesExtras += isr;
+                        } else {
+                            System.out.println("ISR: No aplica");
+                        }
+
+                        
+                        if (e.getmanutencion().equals("Aplica")) {
+                            System.out.println("Manutencion: -Lps. 750");
+                            deduccionesExtras += 750;
+                        } else {
+                            System.out.println("Manutencion: No aplica");
+                        }
+
+                        
+                        totalDeducciones = descuento + deduccionesExtras;
+                        finalTotal = total - totalDeducciones;
+
+                        
                         System.out.println("Salario base: Lps." + base);
                         System.out.println("Pago horas extra: Lps." + pagoExtra);
-                        System.out.println("Deduccion (10%): Lps." + descuento);
-                        System.out.println("TOTAL FINAL: Lps." + finalTotal);
+                        System.out.println("Deduccion general (10%): Lps." + descuento);
+                        System.out.println("Deducciones adicionales: Lps." + deduccionesExtras);
+                        System.out.println("TOTAL FINAL CON DEDUCCIONES: Lps." + finalTotal);
                         System.out.println("-----------------------------");
                     }
-                    break;
 
-                case 8:
+            
+            break;
+        
+
+          case 9:
 
                     int idEliminar = 0;
 
@@ -209,7 +354,7 @@ public class ProyectoProgra1VersionFinalGrupo2 {
                     }
 
                     if (eliminar != null) {
-                        System.out.println("Seguro que desea eliminar a " + eliminar.getNombre() + "? (1 = si / 2 = no):");
+                        System.out.println("Seguro que desea eliminar a " + eliminar.getNombre() + " (1 = si / 2 = no):");
                         int confirm = sc.nextInt();
                         if (confirm == 1) {
                             empleados.remove(eliminar);
@@ -222,7 +367,7 @@ public class ProyectoProgra1VersionFinalGrupo2 {
                     }
                     break;
 
-                case 9:
+                case 10:
                     System.out.println("Cerrando sesion...");
                     break;
 
@@ -231,7 +376,12 @@ public class ProyectoProgra1VersionFinalGrupo2 {
                     break;
             }
 
-        } while (opcion != 9);
+        
+    
+    }
+
+
+while (opcion != 9);
 
     } // fin de main 
 }//fin de class

@@ -9,7 +9,8 @@ package proyecto.progra.pkg1.grupo.pkg2;
  * @author ingen
  */
 public class Empleado {
-     public int id;
+
+    public int id;
     public String nombre;
     public String apellido;
     public double salario;
@@ -17,6 +18,12 @@ public class Empleado {
     public double pagohora;   // pago por hora extra
     public double horastrab;  // horas extra trabajadas
     public double diasTrabajados;
+
+    public String prestamoPlanilla = "";
+    public String prestamoCasa = "";
+    public String RAP = "";
+    public String ISR = "";
+    public String manutencion = "";
 
     public Empleado(int id, String nombre, String apellido, double salario) {
         this.id = id;
@@ -82,6 +89,46 @@ public class Empleado {
 
     public void setDiasTrabajados(double diasTrabajados) {
         this.diasTrabajados = diasTrabajados;
+    }
+
+    public String getPrestamoPlanilla() {
+        return prestamoPlanilla;
+    }
+
+    public void setPrestamoPlanilla(String prestamoPlanilla) {
+        this.prestamoPlanilla = prestamoPlanilla;
+    }
+
+    public String getPrestamoCasa() {
+        return prestamoCasa;
+    }
+
+    public void setPrestamoCasa(String prestamoCasa) {
+        this.prestamoCasa = prestamoCasa;
+    }
+
+    public String getRAP() {
+        return RAP;
+    }
+
+    public void setRAP(String RAP) {
+        this.RAP = RAP;
+    }
+
+    public String getISR() {
+        return ISR;
+    }
+
+    public void setISR(String ISR) {
+        this.ISR = ISR;
+    }
+
+    public String getmanutencion() {
+        return manutencion;
+    }
+
+    public void setManutencion(String manutencion) {
+        this.manutencion = manutencion;
     }
 
     public void mostrarInformacion() {
